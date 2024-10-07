@@ -1,0 +1,46 @@
+# Ignore Bun.js-related files (Server)
+bun.lockb
+node_modules/
+bun_modules/
+.deno/
+.cache/
+.env
+*.log
+
+# Ignore Hono-specific files (Server)
+dist/
+*.env
+
+# Ignore Vite.js (Client) build outputs
+node_modules/
+dist/
+.vite/
+.env
+.env.local
+.env.*.local
+*.local
+*.log
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Windows system files
+Thumbs.db
+ehthumbs.db
+
+# Ignore IDE/Editor specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Ignore test coverage reports
+coverage/
+*.lcov
+*.lcov.*
+.nyc_output/
+
+# Ignore build artifacts
+build/
