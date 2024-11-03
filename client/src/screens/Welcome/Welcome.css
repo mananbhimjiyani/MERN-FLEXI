@@ -103,8 +103,6 @@ body, html {
     margin-left: 8px;                /* Spacing between text and icon */
 }
 
-
-
 .phone-login {
     background-color: #18465F;
     color: #fff;
@@ -129,3 +127,13 @@ body, html {
 .signup-link:hover {
     text-decoration: underline;
 }
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
