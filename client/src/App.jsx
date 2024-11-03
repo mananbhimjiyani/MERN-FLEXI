@@ -16,6 +16,7 @@ const App = () => (
     <>
         <Helmet>
             <title>Nestmate</title>
+            <meta name='description' content="Nestmate is your go-to app for finding the perfect roommate. Simplify your search by connecting with like-minded individuals, filtering preferences, and discovering shared living spaces that suit your lifestyle. Whether you're a student, young professional, or just looking for a change, Nestmate makes finding a roommate easy and efficient." />
         </Helmet>
         <Router>
             <Routes>
