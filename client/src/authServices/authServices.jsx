@@ -1,6 +1,6 @@
 // api.js
 
-const API_BASE_URL = 'https://your-hono-api-url.com';
+const API_BASE_URL = 'https://server.nestmate.workers.dev';
 
 export const signup = async (userData) => {
     const response = await fetch(`${API_BASE_URL}/auth/signup`, {
