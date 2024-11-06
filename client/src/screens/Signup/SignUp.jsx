@@ -118,14 +118,17 @@ function SignUp() {
                         onChange={handleChange}
                     />
                     
-                    <input
-                        type="text"
-                        placeholder="Gender (male, female, other)"
+                    <select
                         className="input-field"
                         name="gender"
                         value={formData.gender}
                         onChange={handleChange}
-                    />
+                    >
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
                     {validationErrors.gender && <p className="error-text">{validationErrors.gender}</p>}
                     
                     <input
