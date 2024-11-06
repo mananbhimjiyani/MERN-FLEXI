@@ -26,26 +26,39 @@ function SignUp() {
         dob: ''
     });
     const [error, setError] = useState('');
+    const [validationErrors, setValidationErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        setValidationErrors({ ...validationErrors, [name]: '' });  
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         setError('');
+        setValidationErrors({});
 
         try {
             const data = await signup(formData);
 
             if (data.error) {
                 setError(data.error);
+            } else if (data.errors) {
+                const newValidationErrors = {};
+
+                // Parse validation errors from server
+                for (const [key, value] of Object.entries(data)) {
+                    if (Array.isArray(value.path) && value.path.length > 0) {
+                        newValidationErrors[value.path[0]] = value.message;
+                    }
+                }
+                setValidationErrors(newValidationErrors);
             } else {
                 alert('Sign-up successful!');
-                // You might want to redirect to another page here
+                // Redirect to another page here
             }
         } catch (err) {
             setError('Network error occurred');
@@ -84,6 +97,8 @@ function SignUp() {
                         value={formData.email}
                         onChange={handleChange}
                     />
+                    {validationErrors.email && <p className="error-text">{validationErrors.email}</p>}
+                    
                     <input
                         type="password"
                         placeholder="Password"
@@ -92,6 +107,8 @@ function SignUp() {
                         value={formData.password}
                         onChange={handleChange}
                     />
+                    {validationErrors.password && <p className="error-text">{validationErrors.password}</p>}
+                    
                     <input
                         type="tel"
                         placeholder="Phone"
@@ -100,14 +117,17 @@ function SignUp() {
                         value={formData.phone}
                         onChange={handleChange}
                     />
+                    
                     <input
                         type="text"
-                        placeholder="Gender"
+                        placeholder="Gender (male, female, other)"
                         className="input-field"
                         name="gender"
                         value={formData.gender}
                         onChange={handleChange}
                     />
+                    {validationErrors.gender && <p className="error-text">{validationErrors.gender}</p>}
+                    
                     <input
                         type="date"
                         placeholder="DOB"
@@ -116,6 +136,7 @@ function SignUp() {
                         value={formData.dob}
                         onChange={handleChange}
                     />
+                    
                     <button type="submit" className="login-button phone-login" disabled={isLoading}>
                         <div className="icon-circle">
                             <img
