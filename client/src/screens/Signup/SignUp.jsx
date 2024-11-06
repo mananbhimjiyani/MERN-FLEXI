@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Person from "../../assets/PersonIcon.svg";
 import { signup } from "../../authServices/authServices";
 import Lottie from "react-lottie";
-import loadingAnimation from "../../assets/loadingAnimation.json"; 
+import loadingAnimation from "../../assets/loadingAnimation.json";
 
 // Lottie animation options
 const defaultOptions = {
@@ -31,8 +31,16 @@ function SignUp() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-        setValidationErrors({ ...validationErrors, [name]: '' });  
+
+        // Convert the DOB to ISO-8601 DateTime format when the date changes
+        if (name === 'dob') {
+            const date = new Date(value);
+            setFormData({ ...formData, dob: date.toISOString() });
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
+
+        setValidationErrors({ ...validationErrors, [name]: '' });
     };
 
     const handleSubmit = async (e) => {
@@ -58,7 +66,6 @@ function SignUp() {
                 setValidationErrors(newValidationErrors);
             } else {
                 alert('Sign-up successful!');
-                // Redirect to another page here
             }
         } catch (err) {
             setError('Network error occurred');
@@ -136,7 +143,7 @@ function SignUp() {
                         placeholder="DOB"
                         className="input-field"
                         name="dob"
-                        value={formData.dob}
+                        value={formData.dob ? formData.dob.split('T')[0] : ''} // Display only the date part
                         onChange={handleChange}
                     />
                     
