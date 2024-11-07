@@ -1,17 +1,143 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Bell, ThumbsUp, MessageCircle, MoreHorizontal, Home, Compass, PlusCircle, Users, MessageSquare } from 'lucide-react';
+import Person from "../../assets/PersonIcon.svg";
+import Room1 from "../../assets/1.jpg";
+import HomeIcon from "../../assets/HomeIcon.svg";
+import './Dashboard.css';
 
-const Dashboard = () => (
-    <div className="dashboard">
-        <h2>Dashboard</h2>
-        <div className="space-card">
-            <img src="path/to/image.jpg" alt="Room" />
-            <h3>Semi-Furnished, All Amenities</h3>
-            <p>Bella Casa Phase 2</p>
-            <button>Like</button>
-            <button>Dislike</button>
+const Dashboard = () => {
+
+  const [activeTab, setActiveTab] = useState('share');
+  const navigate = useNavigate();
+
+  const handleTabClick = (tab) => {
+    setActiveTab(tab);
+    navigate(tab == 'search' ? '/matches' : '/dashboard')
+  }
+
+  return (
+    <div className="dashboard-container">
+      <header className="dashboard-header">
+        <div className="header-navbar">
+          <div><img src={HomeIcon} alt="logo" className="logo" /></div>
+          <h1>Dashboard</h1>
+          <div className="profile-icons">
+            <button className="profile-picture" onClick={() => navigate('/user')}>
+              <img src={Person} alt="User Profile" />
+            </button>
+            <Bell className="notification-icon" size={24} color="#6c7b8a" />
+          </div>
         </div>
-        {/* Other components as needed */}
+      </header>
+
+      <div className="dashboard-tabs">
+        <button
+            className={`tab-button ${activeTab === 'share' ? 'active' : ''}`}
+            onClick={() => handleTabClick('share')}
+        >
+          Share your space
+        </button>
+        <button
+          className={`tab-button ${activeTab === 'search' ? 'active' : ''}`}
+          onClick={() => handleTabClick('search')}
+        >
+          Search Partners
+        </button>
+      </div>
+
+      {/* Space 1 */}
+      <div className="post-card">
+        <div className="card-image">
+          <img
+            src={Room1}
+            alt="Room"
+          />
+          <span className="badge">Techie</span>
+        </div>
+        <div className="card-content">
+          <h2>Semi Furnished All Amenities</h2>
+          <p>Bella Cassa Phase 2 B</p>
+          <p className="sharing">SHARING</p>
+          <p className="user-details">
+            Engineering Bachelor, Sophomore at Symbiosis Institute of Technology
+          </p>
+        </div>
+        <div className="card-actions">
+          <ThumbsUp className="action-button" size={20} color="#5c8aec" />
+          <MessageCircle className="action-button" size={20} color="#5c8aec" />
+          <MoreHorizontal className="action-button" size={20} color="#5c8aec" />
+        </div>
+      </div>
+
+      {/* Space 2 */}
+      <div className="post-card">
+        <div className="card-image">
+          <img
+            src={Room1}
+            alt="Room"
+          />
+          <span className="badge">Techie</span>
+        </div>
+        <div className="card-content">
+          <h2>Semi Furnished All Amenities</h2>
+          <p>Bella Cassa Phase 2 B</p>
+          <p className="sharing">SHARING</p>
+          <p className="user-details">
+          Engineering Bachelor, Sophomore at Symbiosis Institute of Technology
+          </p>
+        </div>
+        <div className="card-actions">
+          <ThumbsUp className="action-button" size={20} color="#5c8aec" />
+          <MessageCircle className="action-button" size={20} color="#5c8aec" />
+          <MoreHorizontal className="action-button" size={20} color="#5c8aec" />
+        </div>
+      </div>
+
+      {/* Space 3 */}
+      <div className="post-card">
+        <div className="card-image">
+          <img
+            src={Room1}
+            alt="Room"
+          />
+          <span className="badge">Techie</span>
+          
+        </div>
+        <div className="card-content">
+          <h2>Semi Furnished All Amenities</h2>
+          <p>Bella Cassa Phase 2 B</p>
+          <p className="sharing">SHARING</p>
+          <p className="user-details">
+          Engineering Bachelor, Sophomore at Symbiosis Institute of Technology
+          </p>
+        </div>
+        <div className="card-actions">
+          <ThumbsUp className="action-button" size={20} color="#5c8aec" />
+          <MessageCircle className="action-button" size={20} color="#5c8aec" />
+          <MoreHorizontal className="action-button" size={20} color="#5c8aec" />
+        </div>
+      </div>
+
+      <footer className="bottom-nav">
+        <button className="nav-button" onClick={() => navigate('/dashboard')}>
+          <Home size={24} color="#6c7b8a" />
+        </button>
+        <button className="nav-button" onClick={() => navigate('/discover')}>
+          <Compass size={24} color="#6c7b8a" />
+        </button>
+        <button className="nav-button" onClick={() => navigate('/add')}>
+          <PlusCircle size={24} color="#6c7b8a" />
+        </button>
+        <button className="nav-button" onClick={() => navigate('/messages')}>
+          <Users size={24} color="#6c7b8a" />
+        </button>
+        <button className="nav-button" onClick={() => navigate('/chat/:id')}>
+          <MessageSquare size={24} color="#243c5a" />
+        </button>
+      </footer>
     </div>
-);
+  );
+};
 
 export default Dashboard;

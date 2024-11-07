@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Person from "../../assets/PersonIcon.svg";
 import { signin } from "../../authServices/authServices";
 import Lottie from "react-lottie";
@@ -14,6 +14,8 @@ const defaultOptions = {
         preserveAspectRatio: 'xMidYMid slice'
     }
 };
+
+const navigate = useNavigate();
 
 function SignIn() {
   const [email, setEmail] = useState('');
@@ -34,6 +36,7 @@ function SignIn() {
       } else {
         localStorage.setItem('token', data.token); // Save JWT token
         alert('Sign-in successful!');
+        navigate("/dashboard");
       }
     } catch (err) {
       setError('Network error occurred');

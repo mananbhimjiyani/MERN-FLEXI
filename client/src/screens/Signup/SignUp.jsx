@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Person from "../../assets/PersonIcon.svg";
 import { signup } from "../../authServices/authServices";
 import Lottie from "react-lottie";
@@ -14,6 +14,8 @@ const defaultOptions = {
         preserveAspectRatio: 'xMidYMid slice'
     }
 };
+
+const navigate = useNavigate();
 
 function SignUp() {
     const [formData, setFormData] = useState({
@@ -66,6 +68,7 @@ function SignUp() {
                 setValidationErrors(newValidationErrors);
             } else {
                 alert('Sign-up successful!');
+                navigate("../UserProfile/UserProfile");
             }
         } catch (err) {
             setError('Network error occurred');

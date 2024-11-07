@@ -7,6 +7,8 @@ import loadingAnimation from './assets/loadingAnimation.json'; // Update with yo
 
 // Lazy load components
 const Dashboard = lazy(() => import('./screens/Dashboard/Dashboard.jsx'));
+const UserProfile = lazy(() => import('./screens/UserProfile/UserProfile.jsx'));
+const AddSpace = lazy(() => import('./screens/AddSpace/AddSpace.jsx'));
 const Discover = lazy(() => import('./screens/Discover/Discover.jsx'));
 const Matches = lazy(() => import('./screens/Matches/Matches.jsx'));
 const ProfileDetails = lazy(() => import('./screens/ProfileDetails/ProfileDetails.jsx'));
@@ -43,6 +45,8 @@ const App = () => (
                 <Routes>
                     <Route path="/" element={<Welcome />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/user" element={<UserProfile />} />
+                    <Route path="/add" element={<AddSpace />} />
                     <Route path="/discover" element={<Discover />} />
                     <Route path="/matches" element={<Matches />} />
                     <Route path="/profile/:id" element={<ProfileDetails />} />
