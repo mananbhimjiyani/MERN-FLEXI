@@ -15,9 +15,9 @@ const defaultOptions = {
     }
 };
 
-const navigate = useNavigate();
-
 function SignIn() {
+  
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -35,7 +35,6 @@ function SignIn() {
         setError(data.error);
       } else {
         localStorage.setItem('token', data.token); // Save JWT token
-        alert('Sign-in successful!');
         navigate("/dashboard");
       }
     } catch (err) {
